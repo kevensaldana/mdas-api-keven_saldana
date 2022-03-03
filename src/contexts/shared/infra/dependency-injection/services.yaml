@@ -2,3 +2,20 @@ services:
   Shared.Logger:
     class: ../WinstonLogger
     arguments: []
+
+  Shared.RabbitMqConfig:
+    factory:
+      class: ../event/rabbit-mq/RabbitMqConfigFactory
+      method: 'createConfig'
+
+  Shared.DomainEventMapping:
+    class: ../event/DomainEventMapping
+    arguments: []
+
+  Shared.DomainEventJsonDeserializer:
+    class: ../event/DomainEventJsonDeserializer
+    arguments: ['@Shared.DomainEventMapping']
+
+  Shared.EventBus:
+    class: ../event/rabbit-mq/RabbitMqEventBus
+    arguments: ['@Shared.RabbitMqConfig', '@Shared.Logger', '@Shared.DomainEventJsonDeserializer']

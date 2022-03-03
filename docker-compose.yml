@@ -1,9 +1,25 @@
 version: "3.9"  
 services:
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - rabbitmq_nodejs
   web:
     build: .
     command: bash -c "npm run build && npm run start"
     ports:
       - "5001:5001"
+    depends_on:
+      - "rabbitmq"
     volumes:
       - .:/code:delegated
+    networks:
+      - rabbitmq_nodejs
+
+networks:
+  rabbitmq_nodejs:
+    driver: bridge  

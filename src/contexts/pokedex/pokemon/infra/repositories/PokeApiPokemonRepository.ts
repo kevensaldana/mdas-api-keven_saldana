@@ -9,8 +9,13 @@ import Weight from '../../domain/Weight'
 
 export default class PokeApiPokemonRepository implements PokemonRepository {
   private baseUrl = 'https://pokeapi.co/api/v2/pokemon/'
+  private mapCachePokemon = new Map<number, Pokemon>()
 
   async find(id: Id) {
+    const cachePokemon = this.mapCachePokemon.get(id.value)
+    if (cachePokemon) {
+      return cachePokemon
+    }
     try {
       const response = await axios.get(`${this.baseUrl}${id.value}`)
       const {
@@ -29,5 +34,9 @@ export default class PokeApiPokemonRepository implements PokemonRepository {
 
   async exists(id: Id) {
     return (await this.find(id)) !== null
+  }
+
+  save(pokemon: Pokemon) {
+    this.mapCachePokemon.set(pokemon.getId().value, pokemon)
   }
 }

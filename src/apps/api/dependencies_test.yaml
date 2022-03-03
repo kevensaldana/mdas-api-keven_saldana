@@ -1,8 +1,8 @@
 imports:
   - { resource: ../../contexts/pokedex/pokemon/infra/dependency-injection/services.yaml }
   - { resource: ../../contexts/pokedex/pokemon/infra/dependency-injection/controllers.yaml }
-  - { resource: ../../contexts/pokedex/users/infra/dependency-injection/services.yaml }
-  - { resource: ../../contexts/pokedex/users/infra/dependency-injection/controllers.yaml }
+  - { resource: ../../contexts/users/infra/dependency-injection/services.yaml }
+  - { resource: ../../contexts/users/infra/dependency-injection/controllers.yaml }
   - { resource: ../../contexts/pokedex/types/infra/dependency-injection/services.yaml }
   - { resource: ../../contexts/pokedex/types/infra/dependency-injection/controllers.yaml }
   - { resource: ../../contexts/shared/infra/dependency-injection/index.yaml }
@@ -14,4 +14,8 @@ services:
 
   Pokedex.Pokemon.PokemonRepository:
     class: ../../../tests/contexts/pokedex/pokemon/infra/StubPokemonRepository
+    arguments: []
+
+  Shared.EventBus:
+    class: ../../contexts/shared/infra/event/memory/InMemorySyncEventBus
     arguments: []

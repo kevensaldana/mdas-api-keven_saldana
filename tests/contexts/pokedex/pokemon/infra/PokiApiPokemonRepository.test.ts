@@ -26,7 +26,7 @@ describe('PokeApiPokemonRepository', () => {
 
     // Assert
     expect(pokemonResult).toEqual(
-      PokemonMother.create(pokeApiResponse.id, pokeApiResponse.name, pokeApiResponse.height, pokeApiResponse.weight)
+      PokemonMother.create(pokeApiResponse.id, pokeApiResponse.name, pokeApiResponse.height, pokeApiResponse.weight, 0)
     )
   })
 
@@ -80,5 +80,17 @@ describe('PokeApiPokemonRepository', () => {
 
     // Assert
     expectWrapper.toThrow(PokemonRepositoryNotWorkingException)
+  })
+
+  it('should save a pokemon', async () => {
+    // Arrange
+    const pokemon = PokemonMother.random()
+    const repository = new PokeApiPokemonRepository()
+
+    // Act
+    repository.save(pokemon)
+
+    // Assert
+    expect(await repository.find(pokemon.getId())).toEqual(pokemon)
   })
 })

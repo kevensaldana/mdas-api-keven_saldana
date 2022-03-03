@@ -1,4 +1,5 @@
 import { App } from './App'
+require('dotenv').config()
 
 try {
   new App().start()

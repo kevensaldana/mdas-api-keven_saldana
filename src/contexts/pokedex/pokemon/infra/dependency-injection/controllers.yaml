@@ -2,3 +2,7 @@ services:
   Apps.Pokemon.controller.GetPokemonById:
     class: ../controllers/GetPokemonByIdController
     arguments: ['@Pokedex.Pokemon.GetPokemonById']
+
+  Apps.Pokemon.subscriber.IncrementFavoriteCounterOnFavoritePokemonAdded:
+    class: ../subscribers/IncrementFavoriteCounterOnFavoritePokemonAddedSubscriber
+    arguments: ['@Pokedex.Pokemon.IncrementPokemonFavoriteCounterById']

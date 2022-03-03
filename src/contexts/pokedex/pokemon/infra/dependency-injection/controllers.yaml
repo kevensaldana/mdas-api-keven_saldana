@@ -1,0 +1,4 @@
+services:
+  Apps.Pokemon.controller.GetPokemonById:
+    class: ../controllers/GetPokemonByIdController
+    arguments: ['@Pokedex.Pokemon.GetPokemonById']

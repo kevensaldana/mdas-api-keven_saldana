@@ -22,14 +22,37 @@
   * Via Endpoint Http Body Json
 * Control exceptions (User not found, UserAlreadyExists, PokemonAlreadyFavorite, PokeApi is down).
 
+# 1.3 Domain Events
+### Requirements:
+
+* Setup Rabbit MQ
+* Increment times pokemon has been marked as favorite pokemon by any user through domain events
+* Add a extra property favorite counter total in pokemon aggregate
+
+###  Approach: 
+
+###  📤  Level Publisher
+1 exchange by [micro]service
+
+* Exchange Topic: Allows us to filter by type of event (including wildcards)
+###  📤  Level Consumer
+1 queue per consumer and event use case
+
+* Cost optimization by consuming only the type of event that interests us (we do not need to apply filters)
+* Do not 'steal' events
+* Possibility of re-queuing events for having failed in a specific use case
+
+<img src="images/approach.png" height="300px">
+
+
 # 2. 🚀 Environment Setup
 
 ### 🐳 Needed tools
 
 1. [Install Docker](https://www.docker.com/get-started)
 2. [Install NodeJS (Required by CLI pokedex)](https://nodejs.org/es/download/)
-2. Clone this project: `https://github.com/kevensaldana/mdas-api-g6.git`
-3. Move to the project folder: `cd mdas-api-g6`
+2. Clone this project: `https://github.com/kevensaldana/mdas-api-keven_saldana.git`
+3. Move to the project folder: `cd mdas-api-keven_saldana`
 4. npm install
 
 # 3. 🚀 Apps

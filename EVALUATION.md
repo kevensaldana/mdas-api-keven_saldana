@@ -18,7 +18,7 @@ OK
 
 #### Tests unitarios
 
-- No se está testeando el servicio de dominio `PokemonFavoriteCounterIncrementer`
+OK
 
 #### Tests de aceptación
 
@@ -28,7 +28,7 @@ OK
 
 OK
 
-**Puntuación: 35/40**
+**Puntuación: 40/40**
 
 ## Se aplican conceptos explicados (50%)
 
@@ -83,4 +83,4 @@ OK
 
 **Puntuación: 10/10**
 
-**PUNTUACIÓN FINAL: 92/100**
+**PUNTUACIÓN FINAL: 97/100**
